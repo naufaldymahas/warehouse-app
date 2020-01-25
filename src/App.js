@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, withRouter, Link } from 'react-router-dom';
+import ListProduct from './containers/ListProduct/ListProduct';
+import AddProduct from './containers/AddProduct/AddProduct';
+import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header style={{ borderBottom: '1px solid black' }} className='p-2 mb-4 d-flex'>
+        <h4 className='m-0 nav-link'>
+          <Link to='/' className='home-navbar'>Product Management</Link>
+        </h4>
+        <span className='my-auto'>
+          <Link to='/add' className='navbar'>
+            Add Product
+          </Link>
+        </span>
       </header>
-    </div>
-  );
-}
+      <div className='px-4'>
+        <Switch>
+          <Route path='/' exact component={ListProduct}/>
+          <Route path='/add' exact component={AddProduct}/>
+        </Switch>
+      </div>
+    </>
+  )
+};
 
-export default App;
+export default withRouter(App);
